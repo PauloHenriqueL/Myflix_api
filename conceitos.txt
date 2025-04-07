@@ -150,4 +150,44 @@ Capítulo: JWT(Authentication e permission de usuários)
                         'HEAD': 'view',
                     }
                     return method_actions.get(method, '')
-                            
+
+
+Capítulo: flake8 sempre no final de cada código
+    Instale pip install flake8 e crie o arquivo .flake8 e nele exclua a venv e o erro E501
+        [flake8]
+        exclude = venv
+        ignore = E501
+
+Capítulo: django Commands
+    Comandos do django:
+        python manage.py runserver
+        pyhton manage.py makemigrations
+        python manage.py migrate
+        python manage.py startapp (name)
+        django-admin startproject (name) .
+        python manage.py createsuperuser
+        python -m venv venv
+        venv/Scripts/activate
+        pip install -r requirements
+        git add .
+        git commit -m "Athentication"
+        git push
+    Comandos próprios:
+        Criar a pasta management/ dentro da raiz da app e commands dentro de management e dentro de cada pasta o __int__.py
+            management\commands
+        Dentro da pasta commands você cria seu commando como import_actors.py. Esse é o nome do comando
+            from django.core.management.base import BaseCommand #BaseCommand sempre será herdado
+
+            class Command(BaseCommand):
+                
+                def handle(self, *args, **options): #Sempre handle
+                    print('MEU PRIMEIRO COMMAND!')
+        Para adicionar argumentos
+            def add_arguments(self, parser):
+                parser.add_argument(
+                    'file_name',
+                    type=str,
+                    help='Nome do arquivo com atores',
+                )
+
+

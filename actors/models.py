@@ -6,7 +6,6 @@ NATIONALITY_CHOICES = ( #Varivel constante tem que ser em maisculo
     ("BR", "Brasil"),    
 )
 
-
 class Actor(models.Model):
     name = models.CharField(max_length=200)
     birthday = models.DateField(blank=True, null=True)

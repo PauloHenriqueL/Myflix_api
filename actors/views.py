@@ -5,8 +5,6 @@ from rest_framework.permissions import IsAuthenticated
 from app.permissions import GlobalDefaultPermission
 
 
-
-
 class ActorCreateListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,GlobalDefaultPermission,) #Authentication de permissões, Verifica se o usuário está authenticado
     queryset = Actor.objects.all()

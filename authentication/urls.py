@@ -1,20 +1,8 @@
 from django.urls import path
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-#Cria um token para verificar a pessoa. Precisa instalar 'djangorestframework-simplejwt' e criar o app Authentication
-#Em seetings precisa colocar que rest_framework_simplejwt em Instaled app E pasta Authentication
-#Ainda em ssetings você precisa falar que ele vai usar a class simplewjwt.
-    #REST_FRAMEWORK = {
-    #    'DEFAULT_AUTHENTICATION_CLASSES': (
-    #        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    #    ),
-    #}
-#Em app.urls precisa colocar a nova urls
-
-
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 urlpatterns = [
-    path('authentication/token/',TokenObtainPairView.as_view(), name='token_obtain_pair')
-    
+    path('authentication/token/',TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('authentication/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),#Gera um novo token que dura 5 min. Refresh token dura 24 horas
+    path('authentication/token/verify/', TokenVerifyView.as_view(), name='token_verify'),#Verifica se o token ainda esta valido
 ]

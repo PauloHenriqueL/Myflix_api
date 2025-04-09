@@ -1,20 +1,21 @@
 from django.db import models
 
 
-NATIONALITY_CHOICES = ( #Varivel constante tem que ser em maisculo
-    ("USA", "Estados Unidos"), #Você dar o valor em Tuplas com o valor que vai ficar no banco de dados e o que vai aparecer
-    ("BR", "Brasil"),    
+NATIONALITY_CHOICES = (
+    ('USA', 'Estados Unidos'),
+    ('BRAZIL', 'Brasil'),
 )
+
 
 class Actor(models.Model):
     name = models.CharField(max_length=200)
-    birthday = models.DateField(blank=True, null=True)
-    nationaly = models.CharField(
+    birthday = models.DateField(null=True, blank=True)
+    nationality = models.CharField(
         max_length=100,
-        choices=NATIONALITY_CHOICES, #Você obriga a ser uma validação de dados
-        blank = True,
-        null = True,
+        choices=NATIONALITY_CHOICES,
+        blank=True,
+        null=True
     )
-    
+
     def __str__(self):
         return self.name

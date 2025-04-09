@@ -2,12 +2,12 @@ from rest_framework import permissions
 
 
 class GlobalDefaultPermission(permissions.BasePermission):
-    """
-    Global model permissions
-    """
 
     def has_permission(self, request, view):
-        model_permission_codename = self.__get_model_permission_codename(request.method, view)
+        model_permission_codename = self.__get_model_permission_codename(
+            method=request.method,
+            view=view,
+        )
 
         if not model_permission_codename:
             return False
@@ -18,12 +18,12 @@ class GlobalDefaultPermission(permissions.BasePermission):
         try:
             model_name = view.queryset.model._meta.model_name
             app_label = view.queryset.model._meta.app_label
-            action = self.__get_action_suffix(method)
-            return f"{app_label}.{action}_{model_name}"
+            action = self.__get_action_sufix(method)
+            return f'{app_label}.{action}_{model_name}'
         except AttributeError:
             return None
 
-    def __get_action_suffix(self, method):
+    def __get_action_sufix(self, method):
         method_actions = {
             'GET': 'view',
             'POST': 'add',

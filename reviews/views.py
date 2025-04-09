@@ -1,8 +1,8 @@
 from rest_framework import generics
-from reviews.models import Review
-from reviews.serializers import ReviewSerializer
 from rest_framework.permissions import IsAuthenticated
 from app.permissions import GlobalDefaultPermission
+from reviews.models import Review
+from reviews.serializers import ReviewSerializer
 
 
 class ReviewCreateListView(generics.ListCreateAPIView):
